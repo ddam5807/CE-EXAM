@@ -1,0 +1,36 @@
+#include<stdio.h>
+
+int factorial(int i)
+{
+    if(i == 1)
+    {
+        return 1;
+    }
+    i *= factorial(i - 1);
+    return i;
+}
+int combination(int line, int n)
+{
+    int result;
+    result = factorial(line) / factorial(line - n) * factorial(n);
+    return result;
+}
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    while (int i = 1 <= n)
+    {
+	while(int j = 1 <=i)
+	{
+		printf("%d ",combination(i,j);
+		j += 1;
+	}
+	printf("\n");
+	i += 1;
+    }
+}
+
+//while 컨디션에서 지역 변수 선언 x
+//0!에 대한 처리
+//combination에 서 result의 옳은 계산은 result = factorial(line) / (factorial(line - n) * factorial(n));
