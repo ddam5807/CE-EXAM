@@ -1,0 +1,92 @@
+def displayBoard(board):
+	print('  0 1 2 3 4 5 6 7')
+	for i in range(8):
+		print(i,end = " ")
+		for j in range(8):
+			print(board[j][i],end=" ")
+		print("")
+def getValidMoves(board, symbol):
+	validMoves = []
+	for y in range(8):
+		for x in range(8):
+			if(board[x][y] == symbol):
+				#각 symbol과 동일한 칸에 대하여 8개의 방향으로 유효성 검사
+				#옆에 다른 심볼이 존재한다면 그 라인 끝을 유효한 수로 보고 validMoves.append([x,y])실행
+				#아래는 정답(난 못함)
+----------------------------------------------------------------------------------------------------------------
+				for dr, dc in directions:
+               				nr, nc = r + dr, c + dc
+                			if 0 <= nr < 8 and 0 <= nc < 8 and board[nr][nc] == opponent:
+                    			while 0 <= nr < 8 and 0 <= nc < 8:
+                        			if board[nr][nc] == '.': # 빈칸이면 이 방향은 실패
+                            				break
+                        			if board[nr][nc] == symbol: # 내 돌을 만나면 유효한 수!
+                            				if [r, c] not in validMoves:
+                                				validMoves.append([r, c])
+                            					break
+                        			# 상대 돌이면 계속 전진
+                        			nr += dr
+                        			nc += dc
+----------------------------------------------------------------------------------------------------------------
+	return validMoves
+def getMoveFromUser(validMoves):
+	x = 0
+	y = 0
+	x = (int)input() #int(input())
+	y = (int)input()
+	userInput = [x,y]
+	if(userInput in validMoves):
+		return true #리턴 값은 userInput
+	else:
+		print('Invalid move')
+		getMoveFromUser(validMoves)
+
+def makeMove(board, move, symbol):
+	while(true):
+		if(
+			#유효성 검사의 역순으로 진행
+			#둔 수의 주변에 있는 상대편의 칸들이 이루는 라인의 끝이 자신의 수라면 그 사이 돌들을 symbol로 변환
+def countDiscs(board):
+	discsNum = {'O':0,'X':0}
+	for y in range(8):
+		for x in range(8):
+			if(board[x][y] == 'O') discsNum['O'] += 1
+			if(board[x][y] == 'X') discsNum['y'] += 1
+	return discsNum
+
+Board = [['.' for x in range(8)] for y in range(8)]
+Board[3][3] = 'O'
+Board[4][4] = 'O'
+Board[3][4] = 'X'
+Board[4][3] = 'X'
+print('Othello starts!')
+displayBoard(Board)
+n = 'O'
+End = 0
+Valid = getValidMoves(Board,n)
+while(true):
+	if(n == 'O'):
+		Valid = getValidMoves(Board,n)
+		if(Valid == NULL): #Null은 없는 문법임 None이 맞음
+			if(End == 1):
+				break
+			elif(End == 0):
+				End = 1
+				n = 'X'
+		PlayerMove = getMoveFromUser(valid)
+		makeMove(Board, PlayerMove, n)
+		n = 'X'
+	if(n == 'X'):
+		Valid = getValidMoves(Board,n)
+		if(Valid == NULL):
+			if(End == 1):
+				break
+			elif(End == 0):
+				End = 1
+				n = 'O'
+		PlayerMove = getMoveFromUser(valid)
+		makeMove(Board, PlayerMove, n)
+		n = 'O'
+if(countDiscs['X'] > countDiscs['O']): print('P2 wins!') #countDiscs에 아규먼트 안 넣어줌
+if(countDiscs['X'] < countDiscs['O']): print('P1 wins!') # =
+if(countDiscs['X'] = countDiscs['O']): print('Draw!') #= + 비교 연산자 제대로 안 넣음
