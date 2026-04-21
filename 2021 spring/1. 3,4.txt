@@ -1,0 +1,40 @@
+1. 3,4
+2. 1,2,3,5
+p True
+or에서 앞이 True이기 때문에 뒤의 q()를 실행하지 않음
+4.
+(1) for j in range(1,i-1,2): 에서 i가 0인 경우 range가 리턴이 불가해 오류가 난다 (X그냥 실행 안하고 넘어감)
+(2) 1 2 3 5 6 7
+(3)--*--*--*-
+5.
+def mymax(n1, n2, n3):
+	max = n1
+	if(n1 < n2):
+		max = n2
+	if(max < n3):
+		max = n3
+	return max
+def mymin(n1, n2, n3):
+	min = n1
+	if(n1 > n2):
+		min = n2
+	if(min > n3):
+		min = n3
+	return min
+def mymid(n1, n2, n3): #겹치는 경우를 처리 안함
+	max = n1
+	min = n1
+	if(max < n2): max = n2
+	if(max < n3): max = n3
+	if(min > n2): min = n2
+	if(min > n3): min = n3
+	mid = 0
+	if(n1 != max and n1 != min): mid = n1
+	elif(n2 != max and n2 != min): mid = n2
+	elif(n3 != max and n3 != min): mid = n3
+	return mid
+6.
+for j in t:
+	factor = j%t[i]
+	if(factor == 0): t -= j # t는 튜플이라 못 건드려서 배열로 바꾸고 재할당해야함
+i += 1
