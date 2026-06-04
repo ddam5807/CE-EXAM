@@ -1,0 +1,40 @@
+1
+1)B
+2)A
+3)B//흠
+4)B//값을 복사하는 형태
+5)B
+
+2
+1) UB는 C standard에서 정의되지 않은 행위들이다. UB는 코드의 결과값의 신뢰성을 보장하지 못하게 하는 문제를 일으킨다
+2)
+#include<stdio.h>
+int main()
+{
+int arr[3];
+printf("%d",*(arr+4));
+}
+
+3
+1)
+27
+2)
+위에서 함수를 int로 선언해두었으나 아래에서는 void라고 하였다. type error가 발생한다
+3)
+Hellothisisatest
+4)
+i <= size 가 arr를 벗어난 값을 읽어오게 한다. 따라서 UB를 일으킨다
+
+4.
+#include <stdio.h>
+#include <string.h>
+char *my_strstr(const char *haystack, const char *needle)
+{
+if((*needle) == NULL) return haystack; //(*needle) == "")
+if(strlen(haystack) < strlen(needle)) return NULL;
+for(int i = 0; i < strlen(haystack) - strlen(needle); i++)//i <= strlen(haystack)
+{
+if(strncmp(haystack + i,needle,strlen(needle)) == 0) return (char)i; //우리는 값이 같아지는 지점의 포인터를 반환해야하므로 return (haystack + i); 
+}
+return NULL;
+}
